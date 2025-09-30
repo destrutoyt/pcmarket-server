@@ -1,8 +1,7 @@
 # PC Market (Backend)
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/destrutoyt/none)
-![GitHub License](https://img.shields.io/github/license/destrutoyt/pc-market-server)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/destrutoyt/pc-market-server/main)
+![GitHub License](https://img.shields.io/github/license/destrutoyt/pcmarket-server)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/destrutoyt/pcmarket-server/main)
 ![version](https://img.shields.io/badge/version-0.0.1-red)
 
 ## 🚀 Project Overview
@@ -38,7 +37,7 @@ The project is currently in the **planning and setup stages**, and more features
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+This project is licensed under the [MIT License](https://github.com/destrutoyt/pcmarket-server/blob/main/LICENSE).
 
 ---
 
