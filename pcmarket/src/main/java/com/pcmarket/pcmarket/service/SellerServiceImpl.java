@@ -2,38 +2,43 @@ package com.pcmarket.pcmarket.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import com.pcmarket.pcmarket.dao.SellerRepository;
 import com.pcmarket.pcmarket.entity.Seller;
 
+@Service
 public class SellerServiceImpl implements SellerService {
 
+    public SellerRepository sellerRepository;
+
+    public SellerServiceImpl(SellerRepository sellerRepository) {
+        this.sellerRepository = sellerRepository;
+    }
     @Override
     public void createSeller(Seller seller) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSeller'");
+        sellerRepository.save(seller);
     }
 
     @Override
     public Seller getSellerById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSellerById'");
+        return sellerRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Seller> getAllSellers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllSellers'");
+        return sellerRepository.findAll();
     }
 
     @Override
     public void updateSeller(int id, Seller seller) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateSeller'");
+        seller.setId(id);
+        sellerRepository.save(seller);
     }
 
     @Override
     public void deleteSeller(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteSeller'");
+        sellerRepository.deleteById(id);
     }
     
 }

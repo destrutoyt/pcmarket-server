@@ -8,8 +8,8 @@ import com.pcmarket.pcmarket.entity.Product;
 public interface ProductService {
 
     List<ProductDTO> findAllProducts();
-    Product findProductById(Long id);
-    Product saveProduct(Product product);
-    void deleteProductById(Long id);
+    ProductDTO findProductById(int id);
+    ProductDTO saveProduct(Product product);
+    void deleteProductById(int id);
 
 }

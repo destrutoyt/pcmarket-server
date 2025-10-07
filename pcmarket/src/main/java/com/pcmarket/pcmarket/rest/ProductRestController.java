@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,11 @@ public class ProductRestController {
     @GetMapping("/productList")
     public List<ProductDTO> findAll() {
         return productService.findAllProducts();
+    }
+
+    // Get method to find a product by its ID
+    @GetMapping("/{id}")
+    public ProductDTO findById(@PathVariable int id) {
+        return productService.findProductById(id);
     }
 }

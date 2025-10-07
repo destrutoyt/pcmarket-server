@@ -46,19 +46,29 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findProductById'");
+    public ProductDTO findProductById(int id) {
+        Product product = productRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+
+        ProductDTO dto = new ProductDTO();
+        dto.setId(product.getId());
+        dto.setProductName(product.getProductName());
+        dto.setDescription(product.getDescription());
+        dto.setPrice(product.getPrice());
+        dto.setImageUrl(product.getImageUrl());
+        sellerRepository.findById(product.getSellerId())
+                .ifPresent(s -> dto.setShopName(s.getShopName()));
+        return dto;
     }
 
     @Override
-    public Product saveProduct(Product product) {
+    public ProductDTO saveProduct(Product product) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'saveProduct'");
     }
 
     @Override
-    public void deleteProductById(Long id) {
+    public void deleteProductById(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteProductById'");
     }
