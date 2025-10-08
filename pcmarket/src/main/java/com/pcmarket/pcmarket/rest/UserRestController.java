@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pcmarket.pcmarket.dto.LoginRequest;
 import com.pcmarket.pcmarket.entity.User;
+import com.pcmarket.pcmarket.security.JwtService;
 import com.pcmarket.pcmarket.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200/") // Allows Angular frontend to access this API
@@ -30,6 +32,21 @@ public class UserRestController {
     @PostMapping
     public void createUser(@RequestBody User user) {
         userService.createUser(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest request) {
+        System.out.println("Login attempt for user: " + request.getUsername());
+
+        User user = userService.authenticate(request.getUsername(), request.getPassword());
+
+        // Generate JWT token
+        JwtService jwtService = new JwtService();
+        String token = jwtService.generateToken(user.getUsername());
+
+        // Return JSON body containing the token
+        Map<String, String> body = Map.of("token", token);
+        return ResponseEntity.ok(body);
     }
 
     // Get method to find a user by its ID

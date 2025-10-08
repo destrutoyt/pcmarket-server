@@ -7,6 +7,8 @@ import com.pcmarket.pcmarket.entity.User;
 public interface UserService {
     void createUser(User user);
 
+    User authenticate(String username, String password);
+
     User getUserById(int id);
 
     List<User> getAllUsers();
