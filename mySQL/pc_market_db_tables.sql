@@ -25,7 +25,7 @@ CREATE TABLE users (
     address_1 VARCHAR(255) NOT NULL,
     address_2 VARCHAR(255),
     state_code CHAR(2) NOT NULL,	-- Two letter code of state
-    zipcode VARCHAR(5) NOT NULL,
+    zip_code VARCHAR(5) NOT NULL,
     country_code CHAR(2) NOT NULL
 );
 

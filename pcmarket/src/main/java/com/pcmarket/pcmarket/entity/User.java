@@ -1,6 +1,9 @@
 package com.pcmarket.pcmarket.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -20,37 +24,47 @@ public class User {
     @Column(name = "user_id")
     private int id;
 
+    @JsonProperty("first_name")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @JsonProperty("last_name")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "username", nullable = false)
     private String username;
 
+    @JsonProperty("password_hash")
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
     @Column(name = "dob", nullable = false)
-    private String dob;
+    private LocalDate dob;
 
-    @Column(name = "account_created")
+    @JsonProperty("account_created")
+    @Column(name = "account_created", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @JsonProperty("address_1")
     @Column(name = "address_1", nullable = false)
     private String address1;
 
+    @JsonProperty("address_2")
     @Column(name = "address_2")
     private String address2;
 
+    @JsonProperty("state_code")
     @Column(name = "state_code", nullable = false)
     private String stateCode;
 
+    @NotNull
+    @JsonProperty("zip_code")
     @Column(name = "zip_code", nullable = false)
     private String zipCode;
 
+    @JsonProperty("country_code")
     @Column(name = "country_code", nullable = false)
     private String countryCode;
 
@@ -94,11 +108,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

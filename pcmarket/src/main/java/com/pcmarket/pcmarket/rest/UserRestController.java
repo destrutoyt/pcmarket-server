@@ -1,7 +1,9 @@
 package com.pcmarket.pcmarket.rest;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,7 @@ public class UserRestController {
     }
 
     // Post method to create a new user
-    @PostMapping("/create")
+    @PostMapping
     public void createUser(@RequestBody User user) {
         userService.createUser(user);
     }
