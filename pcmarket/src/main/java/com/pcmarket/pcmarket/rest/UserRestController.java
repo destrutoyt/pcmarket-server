@@ -45,7 +45,7 @@ public class UserRestController {
         String token = jwtService.generateToken(user.getUsername());
 
         // Return JSON body containing the token
-        Map<String, String> body = Map.of("token", token);
+        Map<String, String> body = Map.of("token", token, "userId", String.valueOf(user.getId()));
         return ResponseEntity.ok(body);
     }
 
