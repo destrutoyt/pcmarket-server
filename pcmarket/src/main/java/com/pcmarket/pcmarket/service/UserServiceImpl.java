@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
-        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -39,8 +39,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id, User user) {
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+    public User updateUser(int id, User user) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Update only the fields that are not null in the incoming user object
+        if (user.getFirstName() != null) existingUser.setFirstName(user.getFirstName());
+        if (user.getLastName() != null) existingUser.setLastName(user.getLastName());
+        if (user.getAddress1() != null) existingUser.setAddress1(user.getAddress1());
+        if (user.getAddress2() != null) existingUser.setAddress2(user.getAddress2());
+        if (user.getZipCode() != null) existingUser.setZipCode(user.getZipCode());
+        if (user.getStateCode() != null) existingUser.setStateCode(user.getStateCode());
+        if (user.getCountryCode() != null) existingUser.setCountryCode(user.getCountryCode());
+
+        return userRepository.save(existingUser);
     }
 
     @Override
@@ -53,7 +65,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
-        if (!passwordEncoder.matches(password, user.getPasswordHash())) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             System.out.println("Password does NOT match");
             throw new RuntimeException("INVALID PASSWORD!");
         } else {
