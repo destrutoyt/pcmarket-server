@@ -59,7 +59,6 @@ public class User {
     @Column(name = "state_code", nullable = false)
     private String stateCode;
 
-    @NotNull
     @JsonProperty("zip_code")
     @Column(name = "zip_code", nullable = false)
     private String zipCode;
