@@ -62,16 +62,16 @@ INSERT INTO products (seller_id, category_id, product_name, product_description,
 -- Data for the `orders` table
 -- 
 INSERT INTO orders (buyer_id, total_amount, status) VALUES
-(2, 3499.99, 'Delivered'),
+(2, 4799.98, 'Delivered'),  -- 2 items (Gaming PC + Laptop)
 (2, 1299.99, 'Shipped'),
-(4, 1899.99, 'Delivered'),
+(4, 3199.98, 'Delivered'),  -- 2 items (Gaming PC + Prebuilt)
 (4, 2999.99, 'Shipped'),
 (5, 2599.99, 'Delivered'),
-(5, 1299.99, 'Processing'),
-(3, 1899.99, 'Delivered'),
+(5, 2599.99, 'Processing'), -- changed total for variety
+(3, 5399.98, 'Delivered'),  -- 3 items in one order
 (3, 3499.99, 'Shipped'),
-(1, 1299.99, 'Delivered'),
-(1, 1899.99, 'Delivered'),
+(1, 3199.98, 'Delivered'),  -- 2 items
+(1, 8399.97, 'Delivered'),  -- 3 items
 (1, 2999.99, 'Shipped'),
 (1, 2599.99, 'Processing'),
 (2, 2999.99, 'Pending'),
@@ -96,19 +96,57 @@ INSERT INTO reviews (product_id, user_id, rating, comment) VALUES
 -- Data for the `order_items` table
 -- 
 INSERT INTO order_items (order_id, product_id, seller_id, quantity, price) VALUES
+-- Order 1 (buyer 2) → 2 items
 (1, 1, 1, 1, 3499.99),
-(2, 5, 2, 1, 1299.99),
+(1, 4, 2, 1, 1299.99),
+
+-- Order 2 (buyer 2)
+(2, 5, 3, 1, 1299.99),
+
+-- Order 3 (buyer 4) → 2 items
 (3, 2, 1, 1, 1899.99),
-(4, 3, 3, 1, 2999.99),
-(5, 4, 3, 1, 2599.99),
-(6, 5, 2, 1, 1299.99),
+(3, 5, 3, 1, 1299.99),
+
+-- Order 4 (buyer 4)
+(4, 3, 2, 1, 2999.99),
+
+-- Order 5 (buyer 5)
+(5, 4, 2, 1, 2599.99),
+
+-- Order 6 (buyer 5)
+(6, 5, 3, 1, 2599.99),
+
+-- Order 7 (buyer 3) → 3 items
+(7, 1, 1, 1, 3499.99),
 (7, 2, 1, 1, 1899.99),
+(7, 5, 3, 1, 1299.99),
+
+-- Order 8 (buyer 3)
 (8, 1, 1, 1, 3499.99),
-(9, 5, 2, 1, 1299.99),
+
+-- Order 9 (buyer 1) → 2 items
+(9, 5, 3, 1, 1299.99),
+(9, 2, 1, 1, 1899.99),
+
+-- Order 10 (buyer 1) → 3 items
+(10, 1, 1, 1, 3499.99),
 (10, 2, 1, 1, 1899.99),
-(11, 3, 3, 1, 2999.99),
-(12, 4, 3, 1, 2599.99),
-(13, 3, 3, 1, 2999.99),
-(14, 4, 3, 1, 2599.99),
+(10, 3, 2, 1, 2999.99),
+
+-- Order 11 (buyer 1)
+(11, 3, 2, 1, 2999.99),
+
+-- Order 12 (buyer 1)
+(12, 4, 2, 1, 2599.99),
+
+-- Order 13 (buyer 2)
+(13, 3, 2, 1, 2999.99),
+
+-- Order 14 (buyer 2)
+(14, 4, 2, 1, 2599.99),
+
+-- Order 15 (buyer 4)
 (15, 1, 1, 1, 3499.99),
-(16, 4, 3, 1, 2599.99);
+
+-- Order 16 (buyer 4)
+(16, 4, 2, 1, 2599.99);
