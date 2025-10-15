@@ -47,7 +47,8 @@ public class OrderServiceImpl implements OrderService {
                 itemDTO.setSellerName(
                         sellerRepository.findById(item.getSellerId())
                                 .map(s -> s.getShopName())
-                                .orElse("Unknown Seller!"));
+                                .orElse("Unknown Seller"));
+                itemDTO.setStatus(item.getStatus()); // 👈 new line
                 return itemDTO;
             }).collect(Collectors.toList());
             dto.setOrderItems(items);

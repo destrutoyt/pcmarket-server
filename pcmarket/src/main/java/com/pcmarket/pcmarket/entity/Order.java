@@ -33,9 +33,6 @@ public class Order {
     @Column(name = "total_amount")
     private double totalAmount;
 
-    @Column(name = "status")
-    private String status;
-
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
@@ -70,15 +67,7 @@ public class Order {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+    
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
