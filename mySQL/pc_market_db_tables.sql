@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS pcmarketdb;
 
 SET FOREIGN_KEY_CHECKS = 0; -- Disables Foreign Key checks. It kind of forces the tables to be deleted without checking if another table has a dependency with them
 
+DROP TABLE IF EXISTS cart_items;
+DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS reviews;
@@ -98,6 +100,23 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE SET NULL,
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id) ON DELETE SET NULL
+);
+
+CREATE TABLE cart (
+  cart_id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE cart_items (
+  cart_items_id INT PRIMARY KEY AUTO_INCREMENT,
+  cart_id INT NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT DEFAULT 1,
+  FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
+  FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
 /*
