@@ -1,6 +1,7 @@
 package com.pcmarket.pcmarket.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.pcmarket.pcmarket.entity.User;
 
@@ -14,6 +15,8 @@ public interface UserService {
     List<User> getAllUsers();
 
     User updateUser(int id, User user);
+
+    User patchUser(int id, Map<String, Object> updates);
 
     void deleteUser(int id);
 }

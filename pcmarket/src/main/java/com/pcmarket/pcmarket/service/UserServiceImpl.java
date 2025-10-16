@@ -1,6 +1,7 @@
 package com.pcmarket.pcmarket.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,20 +44,41 @@ public class UserServiceImpl implements UserService {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Update only the fields that are not null in the incoming user object
-        if (user.getFirstName() != null) existingUser.setFirstName(user.getFirstName());
-        if (user.getLastName() != null) existingUser.setLastName(user.getLastName());
-        if (user.getAddress1() != null) existingUser.setAddress1(user.getAddress1());
-        if (user.getAddress2() != null) existingUser.setAddress2(user.getAddress2());
-        if (user.getZipCode() != null) existingUser.setZipCode(user.getZipCode());
-        if (user.getStateCode() != null) existingUser.setStateCode(user.getStateCode());
-        if (user.getCountryCode() != null) existingUser.setCountryCode(user.getCountryCode());
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setAddress1(user.getAddress1());
+        existingUser.setAddress2(user.getAddress2());
+        existingUser.setZipCode(user.getZipCode());
+        existingUser.setStateCode(user.getStateCode());
+        existingUser.setCountryCode(user.getCountryCode());
 
         return userRepository.save(existingUser);
     }
 
     @Override
-    public void deleteUser(int id) {        
+    public User patchUser(int id, Map<String, Object> updates) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        updates.forEach((key, value) -> {
+            switch (key) {
+                case "firstName" -> existingUser.setFirstName((String) value);
+                case "lastName" -> existingUser.setLastName((String) value);
+                case "address1" -> existingUser.setAddress1((String) value);
+                case "address2" -> existingUser.setAddress2((String) value);
+                case "stateCode" -> existingUser.setStateCode((String) value);
+                case "zipCode" -> existingUser.setZipCode((String) value);
+                case "countryCode" -> existingUser.setCountryCode((String) value);
+                default -> {
+                } // ignore uneditable fields like username, dob, etc.
+            }
+        });
+
+        return userRepository.saveAndFlush(existingUser);
+    }
+
+    @Override
+    public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
 
