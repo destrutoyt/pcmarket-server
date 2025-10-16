@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -63,9 +64,9 @@ public class UserRestController {
     }
 
     // Put method to update an existing user by its ID
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
+    @PatchMapping("/{id}")
+    public ResponseEntity<User> patchUser(@PathVariable int id, @RequestBody Map<String, Object> updates) {
+        User updatedUser = userService.patchUser(id, updates);
         return ResponseEntity.ok(updatedUser);
     }
 

@@ -84,7 +84,6 @@ CREATE TABLE orders (
     buyer_id INT, -- This is the same as user_id, but used it like this to avoid confusion
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total_amount DECIMAL(10,2) NOT NULL,
-    status ENUM("Pending", "Processing", "Shipped", "Delivered", "Cancelled") NOT NULL DEFAULT "Pending",
 	FOREIGN KEY (buyer_id) REFERENCES users(user_id) ON DELETE SET NULL -- FK is the same as filed name buyer_id
 );
 
@@ -95,6 +94,7 @@ CREATE TABLE order_items (
     seller_id INT,
     quantity INT NOT NULL,
     price DECIMAL(10,2) NOT NULL, -- Price at the time of sale
+	status ENUM("Pending", "Processing", "Shipped", "Delivered", "Canceled") NOT NULL DEFAULT "Pending",
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE SET NULL,
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id) ON DELETE SET NULL

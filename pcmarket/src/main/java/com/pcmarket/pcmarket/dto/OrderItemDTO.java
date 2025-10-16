@@ -5,6 +5,7 @@ public class OrderItemDTO {
     private String sellerName;
     private double price;
     private int quantity;
+    private String status;
     
     public String getProductName() {
         return productName;
@@ -29,5 +30,11 @@ public class OrderItemDTO {
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

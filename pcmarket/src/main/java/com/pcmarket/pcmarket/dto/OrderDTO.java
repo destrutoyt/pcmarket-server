@@ -40,5 +40,4 @@ public class OrderDTO {
     public void setOrderItems(List<OrderItemDTO> orderItems) {
         this.orderItems = orderItems;
     }
-
 }

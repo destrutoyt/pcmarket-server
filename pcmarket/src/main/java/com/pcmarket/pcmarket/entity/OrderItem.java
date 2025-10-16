@@ -34,6 +34,9 @@ public class OrderItem {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "status")
+    private String status;
+
     public int getId() {
         return id;
     }
@@ -81,5 +84,10 @@ public class OrderItem {
     public void setPrice(double price) {
         this.price = price;
     }
-
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
