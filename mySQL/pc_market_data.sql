@@ -151,3 +151,31 @@ INSERT INTO order_items (order_id, product_id, seller_id, quantity, price, statu
 -- Order 16
 (16, 4, 2, 1, 2599.99, 'Pending');
 
+-- ========================================================
+-- CART TABLE
+-- ========================================================
+INSERT INTO cart (user_id, created_at, updated_at) VALUES
+(1, NOW(), NOW()), -- John Doe’s active cart
+(2, NOW(), NOW()), -- Jane Smith’s active cart
+(4, NOW(), NOW()), -- Emily Davis’s active cart
+(5, NOW(), NOW()); -- Michael Brown’s active cart
+
+-- ========================================================
+-- CART_ITEMS TABLE
+-- ========================================================
+INSERT INTO cart_items (cart_id, product_id, quantity) VALUES
+-- John’s cart (cart_id = 1)
+(1, 3, 1),  -- Professional Workstation
+(1, 2, 1),  -- Aura Elite Gaming PC
+
+-- Jane’s cart (cart_id = 2)
+(2, 1, 1),  -- Vortex Pro Gaming PC
+(2, 4, 1),  -- Zenith Gaming Laptop
+
+-- Emily’s cart (cart_id = 3)
+(3, 2, 1),  -- Aura Elite Gaming PC
+(3, 5, 2),  -- Nova Pre-built Gaming PC (x2)
+
+-- Michael’s cart (cart_id = 4)
+(4, 3, 1),  -- Professional Workstation
+(4, 1, 1);  -- Vortex Pro Gaming PC
