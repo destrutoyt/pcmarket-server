@@ -5,6 +5,7 @@ import java.util.List;
 
 public class OrderDTO {
     private int orderId;
+    private int userId;
     private Date orderDate;
     private double totalAmount;
     private List<OrderItemDTO> orderItems;
@@ -15,6 +16,14 @@ public class OrderDTO {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getOrderDate() {
