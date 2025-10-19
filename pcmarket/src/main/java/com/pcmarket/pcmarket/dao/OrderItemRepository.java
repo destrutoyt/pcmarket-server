@@ -3,9 +3,9 @@ package com.pcmarket.pcmarket.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pcmarket.pcmarket.entity.Product;
+import com.pcmarket.pcmarket.entity.OrderItem;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
-
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
+    
 }
