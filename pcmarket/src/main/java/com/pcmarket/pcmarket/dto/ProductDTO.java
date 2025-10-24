@@ -1,10 +1,12 @@
 package com.pcmarket.pcmarket.dto;
 
+import java.math.BigDecimal;
+
 public class ProductDTO {
     private int id;
     private String productName;
     private String description;
-    private double price;
+    private BigDecimal price;
     private String imageUrl;
     private String shopName;
 
@@ -26,10 +28,10 @@ public class ProductDTO {
     public void setDescription(String description) {
         this.description = description;
     }
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     public String getImageUrl() {

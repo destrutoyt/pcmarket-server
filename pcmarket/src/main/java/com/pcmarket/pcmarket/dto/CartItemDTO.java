@@ -1,21 +1,21 @@
 package com.pcmarket.pcmarket.dto;
 
+import java.math.BigDecimal;
+
 public class CartItemDTO {
     private int cartItemId;
     private int productId;
     private String productName;
     private String seller;
-    private double price;
+    private BigDecimal price;
     private int quantity;
 
     public int getCartItemId() {
         return cartItemId;
     }
-
     public void setCartItemId(int cartItemId) {
         this.cartItemId = cartItemId;
     }
-    
     public int getProductId() {
         return productId;
     }
@@ -34,10 +34,10 @@ public class CartItemDTO {
     public void setSeller(String seller) {
         this.seller = seller;
     }
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     public int getQuantity() {
@@ -46,6 +46,4 @@ public class CartItemDTO {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    
 }

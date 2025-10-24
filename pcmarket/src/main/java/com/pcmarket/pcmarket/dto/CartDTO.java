@@ -1,12 +1,13 @@
 package com.pcmarket.pcmarket.dto;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class CartDTO {
     private int cartId;
     private int userId;
     private List<CartItemDTO> cartItems;
-    private double totalPrice;
+    private BigDecimal totalPrice;
 
     public int getCartId() {
         return cartId;
@@ -32,11 +33,11 @@ public class CartDTO {
         this.cartItems = cartItems;
     }
 
-    public double getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

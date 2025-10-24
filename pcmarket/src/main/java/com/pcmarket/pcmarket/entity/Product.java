@@ -1,5 +1,6 @@
 package com.pcmarket.pcmarket.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -32,8 +33,8 @@ public class Product {
     @Column(name = "product_description")
     private String description;
 
-    @Column(name = "product_price")
-    private double price;
+    @Column(name = "product_price", precision = 10, scale = 2)
+    private BigDecimal price;
 
     @Column(name = "product_image_url")
     private String imageUrl;
@@ -83,11 +84,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

@@ -1,5 +1,6 @@
 package com.pcmarket.pcmarket.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,7 +72,10 @@ public class CartServiceImpl implements CartService {
         cartDTO.setCartId(cart.getId());
         cartDTO.setUserId(userID);
         cartDTO.setCartItems(cartItems);
-        cartDTO.setTotalPrice(cartItems.stream().mapToDouble(item -> item.getPrice() * item.getQuantity()).sum());
+        cartDTO.setTotalPrice(
+                cartItems.stream()
+                        .map(item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                        .reduce(BigDecimal.ZERO, BigDecimal::add));
         return cartDTO;
     }
 
@@ -118,8 +122,7 @@ public class CartServiceImpl implements CartService {
 
             cartRepository.save(cart);
             cartItemRepository.save(cartItem);
-        }
-        else {
+        } else {
             cartItemRepository.delete(cartItem);
         }
     }
@@ -153,12 +156,12 @@ public class CartServiceImpl implements CartService {
             orderItem.setStatus("Pending");
 
             orderItems.add(orderItem);
-            total += cartItem.getQuantity() * cartItem.getProduct().getPrice(); // Calculate total price
+            total += cartItem.getQuantity() * cartItem.getProduct().getPrice().doubleValue(); // Calculate total price
         }
         orderItemRepository.saveAll(orderItems);
 
         // update total in Order
-        order.setTotalAmount(total);
+        order.setTotalAmount(BigDecimal.valueOf(total));
         orderRepository.save(order);
 
         // clear cart after checkout

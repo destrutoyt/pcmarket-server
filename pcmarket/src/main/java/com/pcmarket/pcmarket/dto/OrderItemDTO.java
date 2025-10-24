@@ -1,9 +1,11 @@
 package com.pcmarket.pcmarket.dto;
 
+import java.math.BigDecimal;
+
 public class OrderItemDTO {
     private String productName;
     private String sellerName;
-    private double price;
+    private BigDecimal price;
     private int quantity;
     private String status;
     
@@ -19,10 +21,10 @@ public class OrderItemDTO {
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
     }
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     public int getQuantity() {

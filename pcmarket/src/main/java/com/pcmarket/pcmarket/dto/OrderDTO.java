@@ -1,5 +1,6 @@
 package com.pcmarket.pcmarket.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class OrderDTO {
     private int orderId;
     private int userId;
     private Date orderDate;
-    private double totalAmount;
+    private BigDecimal totalAmount;
     private List<OrderItemDTO> orderItems;
 
     public int getOrderId() {
@@ -34,11 +35,11 @@ public class OrderDTO {
         this.orderDate = orderDate;
     }
 
-    public double getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 
