@@ -55,6 +55,7 @@ public class CartServiceImpl implements CartService {
 
         List<CartItemDTO> cartItems = cart.getCartItems().stream().map(cartItem -> {
             CartItemDTO dto = new CartItemDTO();
+            dto.setCartItemId(cartItem.getId());
             dto.setProductId(cartItem.getProduct().getId());
             dto.setProductName(cartItem.getProduct().getProductName());
             dto.setSeller(sellerRepository.findById(cartItem.getProduct().getSellerId())
@@ -106,10 +107,21 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void deletCartItem(int cartItemId) {
-        if (!cartItemRepository.existsById(cartItemId)) {
-            throw new RuntimeException("Cart item not found for ID: " + cartItemId);
+        CartItem cartItem = cartItemRepository.findById(cartItemId)
+                .orElseThrow(() -> new RuntimeException("Cart item not found for ID: " + cartItemId));
+
+        // if quantity > 1, decrease by 1 else remove item
+        if (cartItem.getQuantity() > 1) {
+            Cart cart = cartItem.getCart();
+            cart.setUpdatedAt(LocalDateTime.now());
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+
+            cartRepository.save(cart);
+            cartItemRepository.save(cartItem);
         }
-        cartItemRepository.deleteById(cartItemId);
+        else {
+            cartItemRepository.delete(cartItem);
+        }
     }
 
     @Override

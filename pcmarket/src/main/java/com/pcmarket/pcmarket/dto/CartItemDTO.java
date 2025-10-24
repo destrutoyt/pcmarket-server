@@ -1,11 +1,20 @@
 package com.pcmarket.pcmarket.dto;
 
 public class CartItemDTO {
+    private int cartItemId;
     private int productId;
     private String productName;
     private String seller;
     private double price;
     private int quantity;
+
+    public int getCartItemId() {
+        return cartItemId;
+    }
+
+    public void setCartItemId(int cartItemId) {
+        this.cartItemId = cartItemId;
+    }
     
     public int getProductId() {
         return productId;
