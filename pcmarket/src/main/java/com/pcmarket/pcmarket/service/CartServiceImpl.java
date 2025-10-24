@@ -140,11 +140,12 @@ public class CartServiceImpl implements CartService {
         Order order = new Order();
         order.setBuyerId(userID);
         order.setOrderDate(new Date());
+        order.setTotalAmount(BigDecimal.ZERO);
         order = orderRepository.save(order);
         final Order savedOrder = order;
 
         // Create order items from cart items
-        double total = 0;
+        BigDecimal total = BigDecimal.ZERO;
         List<OrderItem> orderItems = new ArrayList<>();
         for (CartItem cartItem : cart.getCartItems()) {
             OrderItem orderItem = new OrderItem();
@@ -156,12 +157,14 @@ public class CartServiceImpl implements CartService {
             orderItem.setStatus("Pending");
 
             orderItems.add(orderItem);
-            total += cartItem.getQuantity() * cartItem.getProduct().getPrice().doubleValue(); // Calculate total price
+            total = total.add(
+                    cartItem.getProduct().getPrice()
+                            .multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         }
         orderItemRepository.saveAll(orderItems);
 
         // update total in Order
-        order.setTotalAmount(BigDecimal.valueOf(total));
+        order.setTotalAmount(total);
         orderRepository.save(order);
 
         // clear cart after checkout
