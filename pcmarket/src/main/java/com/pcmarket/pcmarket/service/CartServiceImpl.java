@@ -59,6 +59,7 @@ public class CartServiceImpl implements CartService {
             dto.setCartItemId(cartItem.getId());
             dto.setProductId(cartItem.getProduct().getId());
             dto.setProductName(cartItem.getProduct().getProductName());
+            dto.setImageUrl(cartItem.getProduct().getImageUrl());
             dto.setSeller(sellerRepository.findById(cartItem.getProduct().getSellerId())
                     .orElseThrow(() -> new RuntimeException(
                             "Seller not found for ID: " + cartItem.getProduct().getSellerId()))
