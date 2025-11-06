@@ -33,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
             dto.setId(p.getId());
             dto.setProductName(p.getProductName());
             dto.setDescription(p.getDescription());
+            dto.setCategory(p.getCategory().getCategoryName());
             dto.setPrice(p.getPrice());
             dto.setImageUrl(p.getImageUrl());
 
@@ -54,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
         dto.setId(product.getId());
         dto.setProductName(product.getProductName());
         dto.setDescription(product.getDescription());
+        dto.setCategory(product.getCategory().getCategoryName());
         dto.setPrice(product.getPrice());
         dto.setImageUrl(product.getImageUrl());
         sellerRepository.findById(product.getSellerId())

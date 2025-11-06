@@ -24,7 +24,7 @@ public class ProductRestController {
     }
 
     // Get method to list all products
-    @GetMapping("/productList")
+    @GetMapping()
     public List<ProductDTO> findAll() {
         return productService.findAllProducts();
     }
