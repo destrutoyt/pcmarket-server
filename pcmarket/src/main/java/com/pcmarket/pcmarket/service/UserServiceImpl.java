@@ -62,13 +62,13 @@ public class UserServiceImpl implements UserService {
 
         updates.forEach((key, value) -> {
             switch (key) {
-                case "firstName" -> existingUser.setFirstName((String) value);
-                case "lastName" -> existingUser.setLastName((String) value);
-                case "address1" -> existingUser.setAddress1((String) value);
-                case "address2" -> existingUser.setAddress2((String) value);
-                case "stateCode" -> existingUser.setStateCode((String) value);
-                case "zipCode" -> existingUser.setZipCode((String) value);
-                case "countryCode" -> existingUser.setCountryCode((String) value);
+                case "first_name" -> existingUser.setFirstName((String) value);
+                case "last_name" -> existingUser.setLastName((String) value);
+                case "address_1" -> existingUser.setAddress1((String) value);
+                case "address_2" -> existingUser.setAddress2((String) value);
+                case "state_code" -> existingUser.setStateCode((String) value);
+                case "zip_code" -> existingUser.setZipCode((String) value);
+                case "country_code" -> existingUser.setCountryCode((String) value);
                 default -> {
                 } // ignore uneditable fields like username, dob, etc.
             }
