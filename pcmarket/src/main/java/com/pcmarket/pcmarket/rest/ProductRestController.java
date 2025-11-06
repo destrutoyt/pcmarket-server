@@ -24,14 +24,14 @@ public class ProductRestController {
     }
 
     // Get method to list all products
-    @GetMapping("/productList")
-    public List<ProductDTO> findAll() {
+    @GetMapping
+    public List<ProductDTO> fetchProducts() {
         return productService.findAllProducts();
     }
 
     // Get method to find a product by its ID
     @GetMapping("/{id}")
-    public ProductDTO findById(@PathVariable int id) {
+    public ProductDTO fetchProductById(@PathVariable int id) {
         return productService.findProductById(id);
     }
 }

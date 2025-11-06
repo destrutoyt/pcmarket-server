@@ -57,7 +57,7 @@ public class UserRestController {
     }
 
     // Get method to list all users
-    @GetMapping("/userList")
+    @GetMapping
     public List<User> getUserList() {
         return userService.getAllUsers();
     }
