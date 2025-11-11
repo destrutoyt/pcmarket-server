@@ -37,8 +37,6 @@ public class UserRestController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest request) {
-        System.out.println("Login attempt for user: " + request.getUsername());
-
         User user = userService.authenticate(request.getUsername(), request.getPassword());
 
         // Generate JWT token
