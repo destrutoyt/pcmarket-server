@@ -88,10 +88,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            System.out.println("Password does NOT match");
             throw new RuntimeException("INVALID PASSWORD!");
-        } else {
-            System.out.println("Password matches");
         }
 
         // Generate JWT and attach to user (or return separately)
