@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.pcmarket</groupId>
 	<artifactId>pcmarket</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-PRODUCTION</version>
 	<name>PC Market Server</name>
 	<description>Server-side for PC Market</description>
 	<url/>
