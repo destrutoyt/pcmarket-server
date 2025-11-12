@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_pcmarket
+    restart: always
+    environment:
+      MYSQL_DATABASE: pcmarketdb
+      MYSQL_USER: pcmarketdb
+      MYSQL_PASSWORD: pcmarketdb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  pcmarket:
+    image: pcmarket:latest
+    container_name: pcmarket
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pcmarketdb
+      SPRING_DATASOURCE_USERNAME: pcmarketdb
+      SPRING_DATASOURCE_PASSWORD: pcmarketdb
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+volumes:
+  mysql_data:
