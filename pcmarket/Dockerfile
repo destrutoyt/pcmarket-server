@@ -1,13 +1,22 @@
 # ------------ 1️⃣ Build Stage ------------
-FROM eclipse-temurin:21-jdk-alpine AS build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY . .
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+
+# Copy pom.xml and dependencies first for faster caching
+COPY pom.xml .
+COPY src ./src
+
+# Build the JAR
+RUN mvn clean package -DskipTests
 
 # ------------ 2️⃣ Run Stage ------------
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
+
+# Copy the jar from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
+# Expose the app port (Render will override it anyway)
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+ENTRYPOINT ["java","-jar","app.jar"]
